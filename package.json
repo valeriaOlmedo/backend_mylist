@@ -1,0 +1,11 @@
+{
+  "name": "com.aidee.mylist",
+  "version": "1.0.0",
+  "description": "Aplicativo para listas de compras",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}
