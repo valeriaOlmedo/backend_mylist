@@ -1,0 +1,20 @@
+const express = require("express");
+const bodyparser = require("body-parser");
+const multer = require("multer");
+const app = express();
+const upload = multer({ dest: "uploads/" });
+const cors = require('cors');
+const PORT = 3000;
+
+app.use(bodyparser.json());
+app.use(cors());
+
+require("./src/routes/listas.routes")(app);
+require("./src/routes/categoria.routes")(app);
+require("./src/routes/articulo.routes")(app);
+
+
+
+app.listen(PORT, () => {
+    console.log(`Listening on ${PORT}`);
+}).on('error', (err) => {console.log('ERROR DE CONEXION, PUERTO EN USO',err.message)});
