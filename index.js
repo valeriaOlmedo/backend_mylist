@@ -9,9 +9,9 @@ const PORT = 3000;
 app.use(bodyparser.json());
 app.use(cors());
 
-require("./src/routes/listas.routes")(app);
-require("./src/routes/categoria.routes")(app);
-require("./src/routes/articulo.routes")(app);
+//require("./src/routes/listas.route")(app);
+require("./src/routes/categoria.route")(app);
+//require("./src/routes/articulo.route")(app);
 
 
 
