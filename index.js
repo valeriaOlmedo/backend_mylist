@@ -9,7 +9,8 @@ const PORT = 3000;
 app.use(bodyparser.json());
 app.use(cors());
 
-//require("./src/routes/listas.route")(app);
+require("./src/routes/lista_cab.route")(app);
+require("./src/routes/lista_det.route")(app);
 require("./src/routes/categoria.route")(app);
 require("./src/routes/articulo.route")(app);
 
