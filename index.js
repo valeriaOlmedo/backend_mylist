@@ -11,7 +11,7 @@ app.use(cors());
 
 //require("./src/routes/listas.route")(app);
 require("./src/routes/categoria.route")(app);
-//require("./src/routes/articulo.route")(app);
+require("./src/routes/articulo.route")(app);
 
 
 
