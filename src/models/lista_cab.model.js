@@ -23,7 +23,12 @@ const Lista_cabModel = sequelize.define(
         type: DataTypes.INTEGER,
         allowNull: false,
 
-    }},
+    },
+    clist_id_usu: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+
+  }},
     {
       tableName: "tb_lista_cab",
       timestamps: false,
