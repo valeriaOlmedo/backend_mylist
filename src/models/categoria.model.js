@@ -14,7 +14,13 @@ const CategoriaModel = sequelize.define(
    cat_descripcion: {
       type: DataTypes.STRING,
       allowNull: false,
-    }},
+    },
+    cat_codigo: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    
+  },
     {
       tableName: "tb_categoria",
       timestamps: false,

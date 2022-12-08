@@ -64,15 +64,23 @@ const create = async (data) => {
 
 //Actualizar datos en la base de datos
 const update = async (data) => {
-  const categoriaModelCount = await CategoriaModel.update(data, {
-    where: {
-      cat_id: data.cat_id,
-    },
-  });
 
-  if (categoriaModelCount > 0) {
+  let nuevosdatos = data;
+
+  let {cat_descripcion} = data;
+
+  const categoriaModelCount = await CategoriaModel.update(
+    {cat_descripcion}, {
+      where: {
+        cat_id: data.cat_id,
+      },
+    }
+  );
+
+  if (categoriaModelCount ) {
     const categoriaModelResult = await CategoriaModel.findByPk(data.cat_id);
-    return categoriaModelResult.dataValues;
+    // return categoriaModelResult.dataValues;
+    return nuevosdatos;
   } else {
     return null;
   }
