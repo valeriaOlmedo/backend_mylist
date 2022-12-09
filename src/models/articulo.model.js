@@ -23,7 +23,13 @@ const ArticuloModel = sequelize.define(
     type: DataTypes.INTEGER,
     allowNull: false,
 
-    }},
+    },
+    art_cantidad: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+  
+      }
+  },
     {
       tableName: "tb_articulo",
       timestamps: false,
