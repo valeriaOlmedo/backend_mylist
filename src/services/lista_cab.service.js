@@ -64,15 +64,19 @@ const create = async (data) => {
 
 //Actualizar datos en la base de datos
 const update = async (data) => {
-  const listaModelCount = await Lista_cabModel.update(data, {
-    where: {
-      clist_id: data.clist_id,
-    },
-  });
-
-  if (listaModelCount > 0) {
+  let nuevosdatos = data;
+  let {clist_titulo} = data;
+  const listaModelCount = await Lista_cabModel.update(
+    {clist_titulo}, {
+      where: {
+        clist_id: data.clist_id,
+      },
+    }
+  );
+  if (listaModelCount ) {
     const listaModelResult = await Lista_cabModel.findByPk(data.clist_id);
-    return listaModelResult.dataValues;
+    // return categoriaModelResult.dataValues;
+    return nuevosdatos;
   } else {
     return null;
   }

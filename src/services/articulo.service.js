@@ -63,6 +63,27 @@ const create = async (data) => {
 };
 
 //Actualizar datos en la base de datos
+
+const update = async (data) => {
+  let nuevosdatos = data;
+  let {art_descripcion} = data;
+  const articuloModelCount = await ArticuloModel.update(
+    {art_descripcion}, {
+      where: {
+        art_id: data.art_id,
+      },
+    }
+  );
+  if (articuloModelCount ) {
+    const articuloModelResult = await ArticuloModel.findByPk(data.art_id);
+    // return categoriaModelResult.dataValues;
+    return nuevosdatos;
+  } else {
+    return null;
+  }
+};
+
+/*
 const update = async (data) => {
   const articuloModelCount = await ArticuloModel.update(data, {
     where: {
@@ -77,6 +98,8 @@ const update = async (data) => {
     return null;
   }
 };
+*/
+
 
 //Eliminar datos en la base de datos
 

@@ -64,15 +64,19 @@ const create = async (data) => {
 
 //Actualizar datos en la base de datos
 const update = async (data) => {
-  const lista_detModelCount = await Lista_detModel.update(data, {
-    where: {
-      dlist_id: data.dlist_id,
-    },
-  });
-
-  if (lista_detModelCount > 0) {
+  let nuevosdatos = data;
+  let {clist_art_id} = data;
+  const lista_detModelCount = await Lista_detModel.update(
+    {clist_art_id}, {
+      where: {
+        dlist_id: data.dlist_id,
+      },
+    }
+  );
+  if (lista_detModelCount ) {
     const lista_detModelResult = await Lista_detModel.findByPk(data.dlist_id);
-    return lista_detModelResult.dataValues;
+    // return lista_detModelResult.dataValues;
+    return nuevosdatos;
   } else {
     return null;
   }
