@@ -1,0 +1,382 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 14.2
+-- Dumped by pg_dump version 14.2
+
+-- Started on 2022-12-09 19:03:38
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+SET default_tablespace = '';
+
+SET default_table_access_method = heap;
+
+--
+-- TOC entry 209 (class 1259 OID 16395)
+-- Name: tb_articulo; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tb_articulo (
+    art_id integer NOT NULL,
+    art_descripcion character varying(80),
+    art_precio integer,
+    art_cat_id integer,
+    art_cantidad integer
+);
+
+
+ALTER TABLE public.tb_articulo OWNER TO postgres;
+
+--
+-- TOC entry 216 (class 1259 OID 24596)
+-- Name: tb_articulo_art_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.tb_articulo ALTER COLUMN art_id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.tb_articulo_art_id_seq
+    START WITH 2
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 210 (class 1259 OID 16398)
+-- Name: tb_categoria; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tb_categoria (
+    cat_id integer NOT NULL,
+    cat_descripcion character varying(80),
+    cat_codigo integer
+);
+
+
+ALTER TABLE public.tb_categoria OWNER TO postgres;
+
+--
+-- TOC entry 214 (class 1259 OID 24593)
+-- Name: tb_categoria_cat_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.tb_categoria ALTER COLUMN cat_id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.tb_categoria_cat_id_seq
+    START WITH 8
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 211 (class 1259 OID 16410)
+-- Name: tb_lista_cab; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tb_lista_cab (
+    clist_id integer NOT NULL,
+    clist_titulo character varying(80),
+    clist_estado character varying(80),
+    clist_id_usu integer
+);
+
+
+ALTER TABLE public.tb_lista_cab OWNER TO postgres;
+
+--
+-- TOC entry 217 (class 1259 OID 24597)
+-- Name: tb_lista_cab_clist_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.tb_lista_cab ALTER COLUMN clist_id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.tb_lista_cab_clist_id_seq
+    START WITH 5
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 212 (class 1259 OID 16415)
+-- Name: tb_lista_det; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tb_lista_det (
+    dlist_id integer NOT NULL,
+    dlist_art_id integer NOT NULL,
+    dlist_precio integer,
+    dlist_cantidad integer,
+    dlist_idcab integer
+);
+
+
+ALTER TABLE public.tb_lista_det OWNER TO postgres;
+
+--
+-- TOC entry 218 (class 1259 OID 24598)
+-- Name: tb_lista_det_dlist_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.tb_lista_det ALTER COLUMN dlist_id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.tb_lista_det_dlist_id_seq
+    START WITH 7
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 213 (class 1259 OID 16425)
+-- Name: tb_usuario; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.tb_usuario (
+    usu_id integer NOT NULL,
+    usu_correo character varying(80),
+    usu_nombre character varying(80),
+    usu_clave character varying(80),
+    usu_img character varying(80)
+);
+
+
+ALTER TABLE public.tb_usuario OWNER TO postgres;
+
+--
+-- TOC entry 215 (class 1259 OID 24595)
+-- Name: tb_usuario_usu_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public.tb_usuario ALTER COLUMN usu_id ADD GENERATED ALWAYS AS IDENTITY (
+    SEQUENCE NAME public.tb_usuario_usu_id_seq
+    START WITH 2
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1
+);
+
+
+--
+-- TOC entry 3338 (class 0 OID 16395)
+-- Dependencies: 209
+-- Data for Name: tb_articulo; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.tb_articulo (art_id, art_descripcion, art_precio, art_cat_id, art_cantidad) FROM stdin;
+1	Pan\n\n	5300	1	\N
+4	galleton	5	1	4
+3	Tomate editado 5.0	5300	1	\N
+6	galleta cuartel	55	1	5
+5	cereales	31	5	2
+8	12212	5000	7	5
+9	Manteca	5300	1	1
+\.
+
+
+--
+-- TOC entry 3339 (class 0 OID 16398)
+-- Dependencies: 210
+-- Data for Name: tb_categoria; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.tb_categoria (cat_id, cat_descripcion, cat_codigo) FROM stdin;
+7	Panificados 23	\N
+2	VERDURAS 2.0	\N
+5	Cereales	\N
+9	hola 3	\N
+1	Panificados	\N
+20	comida de gato	5
+21	articulo modificado	5
+\.
+
+
+--
+-- TOC entry 3340 (class 0 OID 16410)
+-- Dependencies: 211
+-- Data for Name: tb_lista_cab; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.tb_lista_cab (clist_id, clist_titulo, clist_estado, clist_id_usu) FROM stdin;
+4	lista 4 editado	0	1
+10	aaaaaaaaaaaa	1	1
+1	lista 1 editado	1	2
+12	lista prueba	1	1
+\.
+
+
+--
+-- TOC entry 3341 (class 0 OID 16415)
+-- Dependencies: 212
+-- Data for Name: tb_lista_det; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.tb_lista_det (dlist_id, dlist_art_id, dlist_precio, dlist_cantidad, dlist_idcab) FROM stdin;
+2	1	5000	1	1
+3	1	6000	1	1
+6	1	10000	1	1
+1	1	8000	3	4
+\.
+
+
+--
+-- TOC entry 3342 (class 0 OID 16425)
+-- Dependencies: 213
+-- Data for Name: tb_usuario; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.tb_usuario (usu_id, usu_correo, usu_nombre, usu_clave, usu_img) FROM stdin;
+1	aidee@gmail.com	Valeria Olmedo	123	\N
+2	carlos@gmail.com.py	carlos	123456	\N
+\.
+
+
+--
+-- TOC entry 3353 (class 0 OID 0)
+-- Dependencies: 216
+-- Name: tb_articulo_art_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tb_articulo_art_id_seq', 9, true);
+
+
+--
+-- TOC entry 3354 (class 0 OID 0)
+-- Dependencies: 214
+-- Name: tb_categoria_cat_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tb_categoria_cat_id_seq', 21, true);
+
+
+--
+-- TOC entry 3355 (class 0 OID 0)
+-- Dependencies: 217
+-- Name: tb_lista_cab_clist_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tb_lista_cab_clist_id_seq', 13, true);
+
+
+--
+-- TOC entry 3356 (class 0 OID 0)
+-- Dependencies: 218
+-- Name: tb_lista_det_dlist_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tb_lista_det_dlist_id_seq', 7, false);
+
+
+--
+-- TOC entry 3357 (class 0 OID 0)
+-- Dependencies: 215
+-- Name: tb_usuario_usu_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
+--
+
+SELECT pg_catalog.setval('public.tb_usuario_usu_id_seq', 2, true);
+
+
+--
+-- TOC entry 3185 (class 2606 OID 16404)
+-- Name: tb_articulo articulo_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tb_articulo
+    ADD CONSTRAINT articulo_pkey PRIMARY KEY (art_id);
+
+
+--
+-- TOC entry 3187 (class 2606 OID 16402)
+-- Name: tb_categoria categoria_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tb_categoria
+    ADD CONSTRAINT categoria_pkey PRIMARY KEY (cat_id);
+
+
+--
+-- TOC entry 3191 (class 2606 OID 24587)
+-- Name: tb_lista_det id_detalle; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tb_lista_det
+    ADD CONSTRAINT id_detalle PRIMARY KEY (dlist_id) INCLUDE (dlist_id);
+
+
+--
+-- TOC entry 3189 (class 2606 OID 16414)
+-- Name: tb_lista_cab lista_cab_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tb_lista_cab
+    ADD CONSTRAINT lista_cab_pkey PRIMARY KEY (clist_id);
+
+
+--
+-- TOC entry 3193 (class 2606 OID 16429)
+-- Name: tb_usuario tb_usuario_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tb_usuario
+    ADD CONSTRAINT tb_usuario_pkey PRIMARY KEY (usu_id);
+
+
+--
+-- TOC entry 3195 (class 2606 OID 16482)
+-- Name: tb_usuario usu_correo; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tb_usuario
+    ADD CONSTRAINT usu_correo UNIQUE (usu_correo);
+
+
+--
+-- TOC entry 3196 (class 2606 OID 24576)
+-- Name: tb_articulo art_cat; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tb_articulo
+    ADD CONSTRAINT art_cat FOREIGN KEY (art_cat_id) REFERENCES public.tb_categoria(cat_id) NOT VALID;
+
+
+--
+-- TOC entry 3198 (class 2606 OID 24581)
+-- Name: tb_lista_det dList_cList; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tb_lista_det
+    ADD CONSTRAINT "dList_cList" FOREIGN KEY (dlist_idcab) REFERENCES public.tb_lista_cab(clist_id) NOT VALID;
+
+
+--
+-- TOC entry 3197 (class 2606 OID 24588)
+-- Name: tb_lista_cab fk_usu; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.tb_lista_cab
+    ADD CONSTRAINT fk_usu FOREIGN KEY (clist_id_usu) REFERENCES public.tb_usuario(usu_id) NOT VALID;
+
+
+-- Completed on 2022-12-09 19:03:39
+
+--
+-- PostgreSQL database dump complete
+--
+
