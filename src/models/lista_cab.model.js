@@ -14,25 +14,21 @@ const Lista_cabModel = sequelize.define(
     clist_titulo: {
         type: DataTypes.INTEGER,
         allowNull: false,
-    },
+    }, 
     clist_estado: {
         type: DataTypes.INTEGER,
         allowNull: false,
     },
-    clist_fecha: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
 
-    },
     clist_id_usu: {
       type: DataTypes.INTEGER,
       allowNull: false,
-
+ 
   }},
     {
       tableName: "tb_lista_cab",
       timestamps: false,
-    }
+    } 
   );
   
   module.exports = {Lista_cabModel};

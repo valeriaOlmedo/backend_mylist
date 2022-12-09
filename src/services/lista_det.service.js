@@ -15,9 +15,9 @@ const list = async (query, pageStart = 1, pageLimit = 10) => {
     const lista_detResult = lista_detModelResults[i];
     lista_detArray.push(lista_detResult.dataValues);
   }
-
+ 
   return lista_detArray;
-};
+}; 
 
 //Consulta en la base de datos filtrando por palabras
 const listFilter = async (query, pageStart = 1, pageLimit = 10) => {
